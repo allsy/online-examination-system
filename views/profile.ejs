@@ -1,0 +1,152 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/profile.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+   
+    <div id="main">
+
+        <div class="heading">
+            <p>College Profile</p>
+            <button id="activateEdit" class="myBtn"><%- include('svg/edit') %></button>
+        </div>
+        <div id="mainSlider">
+
+            <div id="mainView">
+
+                <div class="imgCnt">
+                    <% if(college.image){ %>
+                    <img src="<%= college.image %>" alt="logo">
+                    <% }else{%>
+                    <img src="/images/question.jpeg" alt="logo">
+                    <% } %>
+                </div>
+
+                <div class="nameCnt">
+                    <p class="subtitle">Name</p>
+                    <% if(college.name){ %>
+                        <p class="values"><%= college.name %></p>
+                    <% }else{%>
+                        <p class="values">..............................</p>
+                    <% } %>
+                </div>
+
+                <div class="regCnt">
+                    <p class="subtitle">Regestration / AICTE number</p>
+                    <% if(college.uniqid){ %>
+                        <p class="values"><%= college.uniqid %></p>
+                    <% }else{%>
+                        <p class="values">..............................</p>
+                    <% } %>
+                </div>
+
+                <div class="addrCnt">
+                    <p class="subtitle">Address</p>
+                    <% if(college.college_address.landmark){ %>
+                        <p class="values"><%= college.college_address.landmark %></p>
+                    <% }else{%>
+                        <p class="values">..............................</p>
+                    <% } %>
+                </div>
+
+                <div class="stateCnt">
+                    <p class="subtitle">State</p>
+                    <% if(college.college_address.state){ %>
+                        <p class="values"><%= college.college_address.state %></p>
+                    <% }else{%>
+                        <p class="values">..............................</p>
+                    <% } %>
+
+                </div>
+
+                <div class="cityCnt">
+                    <p class="subtitle">City</p>
+                    <% if(college.college_address.city){ %>
+                        <p class="values"><%= college.college_address.city %></p>
+                    <% }else{%>
+                        <p class="values">..............................</p>
+                    <% } %>
+
+                </div>
+
+                <div class="pincnt">
+                    <p class="subtitle">Pincode</p>
+                    <% if(college.college_address.pin){ %>
+                        <p class="values"><%= college.college_address.pin %></p>
+                    <% }else{%>
+                        <p class="values">..............................</p>
+                    <% } %>
+
+                </div>
+
+            </div>
+    
+            <div id="mainEdit">
+
+
+                <form id="form" >
+
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" id="csrf">
+
+                <div class="imgCnt">
+                    <% if(college){ %>
+                        <img src="<%= college.image %>" alt="logo" id="logoPreview">
+                    <% }else{%>
+                        <img src="/images/question.jpeg" alt="logo" id="logoPreview">
+                    <% } %>
+
+                    <input type="file" name="logo" id="culogo">
+                    <label for="culogo">
+                        <%- include('svg/edit') %>
+                    </label>
+                </div>
+
+                <div class="nameCnt">
+                    <p class="subtitle">Name</p>
+                    <input type="text" class="values" value="<%= college.name %>" name="name" id="inpname" required>
+                </div>
+
+                <div class="regCnt">
+                    <p class="subtitle">Regestration / AICTE number</p>
+                    <input type="text" class="values" value="<%= college.uniqid %>" name="regno" id="inpregno" required>
+
+                </div>
+
+                <div class="addrCnt">
+                    <p class="subtitle">Address</p>
+                    <input type="text" class="values" value="<%= college.college_address.landmark %>" name="addr" id="inpaddr" required>
+                </div>
+
+                <div class="stateCnt">
+                    <p class="subtitle">State</p>
+                    <input type="text" class="values" value="<%= college.college_address.state %>" name="state" id="inpstate" required>
+                </div>
+
+                <div class="cityCnt">
+                    <p class="subtitle">City</p>
+                    <input type="text" class="values" value="<%= college.college_address.city %>" name="city" id="inpcity" required>
+                </div>
+
+                <div class="pincnt">
+                    <p class="subtitle">Pincode</p>
+                    <input type="text" class="values" value="<%= college.college_address.pin %>" name="pin" id="inppin" required>
+                </div>
+    
+                <button id="update">Update</button>
+
+            </form>
+
+            </div>
+
+        </div>
+    </div>
+   
+
+    <%- include('inc/footer') %>
+
+    <script src="/js/default.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+
+</html>

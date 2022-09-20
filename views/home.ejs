@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/default.css" />
+    <link rel="stylesheet" href="/styles/home.css" />
+</head>
+<body>
+
+    <header></header>
+
+
+    <div id="mainContainer">
+
+        <!-- main container -->
+        <div id="top">
+
+            <!-- top or left container -->
+            <div id="tleft">
+
+                <div id="collegeView">
+
+                    <div class="view">
+                        <button id="activateEdit" class="myBtn"><%- include('svg/edit') %></button>
+                        <img src="/images/colleges/225412.jpeg" alt="logo" />
+                        <div id="cd">
+                            <div>
+                                <p class="cname">Sinhgad institutes of management and computer application</p>
+                            </div>
+                            <div class="regno">
+                                <p>Reg No</p>
+                                <p>4165451</p>
+                            </div>
+                            <div class="addholder">
+                                <p>Opposite Bank of Maharashtra, Narhe</p>
+                                <p>maharashtra</p>
+                                <p>pune-411041</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="collegeEdit">
+
+                    <div class="editview">
+
+                        <button id="closeEdit" class="myBtn"><%- include('svg/cross') %></button>
+                        <div class="imageuholder">
+                            <img src="/images/colleges/225412.jpeg" alt="logo">
+                            <input type="file" name="logo" id="culogo">
+                            <label for="culogo">
+                                <%- include('svg/edit') %>
+                            </label>
+    
+                        </div>
+                        <div class="einputholder">
+                            <input type="text" value="Sinhgad institutes of management and computer application">
+                            <input type="text" value="4165451">
+                            <input type="text"value="Opposite Bank of Maharashtra, Narhe">
+                            <input type="text" value="maharashtra">
+                            <input type="text" value="pune">
+                            <input type="text" value="411041">
+                        </div>
+                        <div>
+                            <button id="update" class="myBtn">Update</button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- right or bottom container -->
+            <div id="tright">
+
+                <div id="createExamBtnCnt">
+                    <button id="createExamBtn" class="myBtn">Create Exam</button>
+                </div>
+
+                <p class="subheading">All Exams</p>
+                <div>
+
+                    <!-- exam tile -->
+                    <div class="examtile">
+                        <img src="/images/exams/025461.jpg" alt="" class="examlogo">
+                        <div class="examdetails">
+                            <p class="examname">Logica</p>
+                            <p class="startat">Starting on <%= new Date().toLocaleString() %></p>
+                            <p class="duration">Duration 20 minutes</p>
+                            <p class="linktitle">Registration Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/register</a>
+                            <p class="linktitle">Exam Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/login</a>
+                            <div class="examed">
+                                <button class="myBtn"><%- include('svg/edit') %></button>
+                                <button class="myBtn"><%- include('svg/cross') %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ................ -->
+
+                    <!-- exam tile -->
+                    <div class="examtile">
+                        <img src="/images/exams/025461.jpg" alt="" class="examlogo">
+                        <div class="examdetails">
+                            <p class="examname">Logica</p>
+                            <p class="startat">Starting on <%= new Date().toLocaleString() %></p>
+                            <p class="duration">Duration 20 minutes</p>
+                            <p class="linktitle">Registration Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/register</a>
+                            <p class="linktitle">Exam Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/login</a>
+                            <div class="examed">
+                                <button class="myBtn"><%- include('svg/edit') %></button>
+                                <button class="myBtn"><%- include('svg/cross') %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ................ -->
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer></footer>
+    
+    <script src="/js/home.js"></script>
+</body>
+</html>

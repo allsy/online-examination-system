@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="/styles/bs/dist/css/bootstrap.min.css"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>ONLiNE | EXAM | SYSTEM</title>
+
+  <style>
+    body{
+      min-width: 1000px;
+    }
+    .questionCnt{
+      width: 100%;
+      height: auto;
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      color: black !important;
+      font-weight: bolder;
+    }
+    .qTile{
+      width: 100%;
+      height: auto;
+      margin: 10px 0;
+      background-color: white;
+      position: absolute;
+    }
+    .question{
+      font-size: 18px;
+    }
+    .opCnt{
+      display: flex;
+      margin: 10px 5px;
+      flex-direction: column;
+    }
+    .optTile{
+      display: flex;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+    .optTile>label{
+      order: 2;
+    }
+    .optTile>input{
+      margin: 0 30px 0 0;
+    }
+    #queNav{
+      width: 260px;
+    }
+    #queNav>*{
+      margin: auto;
+    }
+    .bsCnt{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      width: auto;
+    }
+    .btnSwitcher{
+      height: 42px;
+      width: 42px;
+      background-color: rgb(22, 22, 22);
+      color: white;
+      border-radius: 5px;
+    }
+
+    #incompatible{
+      height: 80vh;
+      width: 100%;
+      z-index: 10;
+      position: absolute;
+      background-color: white;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: none;
+    }
+    #incompatible>div{
+      display: flex;
+    }
+    #incompatible>p{
+      font-size: 18px;
+    }
+    #incompatible img{
+      height: 80px;
+      width: 80px;
+      margin: 10px 15px;
+    }
+    #incompatible .icheading{
+      font-size: 24px;
+      margin: auto;
+    }
+    #submitted{
+      width: 100%;
+      height: 80vh;
+      position: absolute;
+      left: 0;
+      z-index: 10;
+      display: none;
+      background-color: white;
+    }
+    #submitted>p{
+      margin: auto;
+      font-size: 24px;
+    }
+    #information{
+      width: 100%;
+      height: 80vh;
+      position: absolute;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      align-items: center;
+      padding-top: 40px;
+    }
+    #information>ul{
+      width: 800px;
+      font-size: 18px;
+    }
+    .reds{
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      display: inline-block;
+    }
+    .greens{
+      height: 20px;
+      width: 20px;
+      background-color: green;
+      display: inline-block;
+    }
+    .blacks{
+      height: 20px;
+      width: 20px;
+      background-color: rgb(22, 22, 22);
+      display: inline-block;
+    }
+    .grays{
+      height: 20px;
+      width: 20px;
+      background-color: gray;
+      display: inline-block;
+    }
+    #information>ul>li{
+      margin: 5px 0;
+    }
+    #start{
+      background-color: blue;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      margin: 80px 0 0 0;
+      box-shadow: 0 0 10px gray;
+      transition: all 300ms ease-in-out;
+    }
+    #start:hover{
+      transform: scale(1.1);
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <nav id="header" class="row navbar navbar-light bg-light">
+    <div class="container px-5">
+      <h3><%= exam.name.toUpperCase() %></h3>
+      <ul class=" navbar-nav">
+        <li class="nav-item  ">
+          <h4> Time : <span id="timer"></span> </h4>
+        </li>
+      </ul>
+    </div>
+    <div class="px-5">
+      <!-- <h5>Paper </h5> -->
+    </div>
+    <div class="px-5">
+      <h5>Name : <%= cuser.name.toUpperCase() %> </h5>
+    </div>
+  </nav>
+
+
+  <div id="incompatible">
+    <p class="icheading">Your Browser is not supported</p>
+    <p>Close this tab and login using your PC ( mobile devices are not supported )</p>
+    <p>Make sure you are using the latest version of one of these browsers</p>
+
+    <div>
+      <img src="/images/chrome.png" />
+      <img src="/images/firefox.png" />
+      <img src="/images/edge.png" />
+      <img src="/images/safari.png" />
+
+    </div>
+
+  </div>
+  <div id="submitted">
+
+    <p>Your response has been submitted !</p>
+
+  </div>
+  <div id="information">
+
+    <ul>
+      <li>Make sure your are connected to internet before proceeding.</li>
+      <li>Once you start the exam, you will enter fullscreen.</li>
+      <li>Exiting full screen will automatically submit your paper.</li>
+    </ul>
+
+    <ul>
+      <li>There are total 25 number of questions displyed at right corner of the window</li>
+      <li>All the unanswered questions are marked as <div class="reds"></div></li>
+      <li>All the answered questions are marked as <div class="greens"></div></li>
+      <li>All the unvisited questions are marked as <div class="blacks"></div></li>
+      <li>Active question is marked as <div class="grays"></div></li>
+    </ul>
+
+    <h3>Exam starts at:</h3>
+    <h3><%= new Date(exam.starting).toLocaleString() %></h3>
+
+    <button id="start">Proceed</button>
+
+  <div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- question -->
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-9 py-4">
+
+        <div class="questionCnt">
+
+          <% xx=1 %>
+          <% for(var i= 0; i < questions.length; i++ ){ %>
+
+            <div class="qTile" id="<%= questions[i].q_id %>">
+
+              <p class="question"> <%= xx++ %> : <%= questions[i].question %></p>
+
+              <div class="opCnt">
+
+                <div class="optTile">
+                <label for="<%= questions[i].q_id %>a"><%= questions[i].a %></label>
+                <% if(questions[i].ans == 'a') { %>
+                <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>a" value="a" checked />
+                <% }else{ %>
+                  <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>a" value="a" />
+                <% } %>
+              </div>
+
+                <div class="optTile">
+
+                  <label for="<%= questions[i].q_id %>b"><%= questions[i].b %></label>
+                  <% if(questions[i].ans == 'b') { %>
+                    <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>b" value="b" checked />
+                    <% }else{ %>
+                      <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>b" value="b" />
+                    <% } %>
+
+                </div>
+
+                <div class="optTile">
+
+                  <label for="<%= questions[i].q_id %>c"><%= questions[i].c %></label>
+                  <% if(questions[i].ans == 'c') { %>
+                    <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>c" value="c" checked />
+                    <% }else{ %>
+                      <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>c" value="c" />
+                    <% } %>
+
+                </div>
+
+                <div class="optTile">
+                  <label for="<%= questions[i].q_id %>d"><%= questions[i].d %></label>
+                  <% if(questions[i].ans == 'd') { %>
+                    <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>d" value="d" checked />
+                    <% }else{ %>
+                      <input type="radio" name="<%= questions[i].q_id %>" id="<%= questions[i].q_id %>d" value="d" />
+                    <% } %>
+
+                </div>
+
+              </div>
+            </div>
+            
+            <% } %>
+
+        </div>
+
+      </div>
+
+      <!-- questions nav -->
+
+
+
+      <div class="col col-lg-3 py-4">
+        <div id="queNav" class="container px-1">
+
+          <% var btn=01 %>           
+
+          <div class="bsCnt">
+            <% for(var j=0; j<questions.length; j++){ %>
+              <div class="col col-lg-2"><button class="btnSwitcher"><%= btn < 10 ? "0"+btn++ : btn++ %></button></div>
+            <% } %>
+          </div>
+
+          <div class="row container px-3 py-3">
+            <button class="btn btn-outline-success" id="submit">Submit</button>
+          </div>
+
+
+          <div class="row mt-5">
+            <div class="col col-lg-7">
+              <button class="btn btn-outline-warning" id="prevBtn"> Previous</button>
+            </div>
+
+            <div class="col col-lg-5">
+              <button class="btn btn-outline-warning px-4" id="nextBtn">Next </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+<script>
+
+ const UUID = "<%= user.uuid %>";
+ const EXAMID = "<%= exam.uniqid %>";
+ const duration = "<%= exam.duration %>";
+ const starttime = "<%= exam.starting %>"
+ var examstarted = false;
+
+  // Sockets
+  const socket = io({
+  auth:{
+    uid:UUID,
+    examId:EXAMID
+  }
+ });
+
+ init();
+
+ socket.on('connect',function(){
+  console.log(socket.id);
+ })
+
+ socket.on('disconnect',function(){
+  console.log(socket.id);
+ })
+
+ socket.on('submitted',function(){
+
+  document.getElementById('submitted').style.display = "block";
+
+ });
+
+ socket.on('examended',function(){
+
+  document.getElementById("information").style.display = "none";
+  document.getElementById('submitted').style.display = "block";
+
+});
+
+socket.on('start',function(){
+
+examstarted = true;
+document.getElementById("information").style.display = "none";
+var timer = document.getElementById("timer");
+
+setInterval(function(){
+
+  var cc = (parseInt(duration) *60 * 1000)- (Date.now() - parseInt(Date.parse(starttime)) );
+  var tt = millisToMinutesAndSeconds(cc);
+
+  if(cc > 0)
+  timer.innerHTML = tt;
+
+},1000);
+
+
+setTimeout(function(){
+
+  socket.emit('submit',UUID,EXAMID,details);
+
+},(parseInt(duration) *60 * 1000)- (Date.now() - parseInt(Date.parse(starttime)) ));
+
+
+});
+
+
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
+socket.on('notstarted',function(){
+
+alert("Exam not started Yet");
+
+});
+
+  const qtile = document.getElementsByClassName('qTile');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const btnSwitcher = document.getElementsByClassName('btnSwitcher');
+  const inputs = document.querySelectorAll('input[type=radio]');
+
+
+  const submit = document.getElementById('submit');
+
+  var total = qtile.length;
+  var current = 0;
+
+  const details=[];
+
+  for(var i=0; i<total; i++){
+    details.push({id:qtile[i].getAttribute('id'),answer:'',visited:false});
+  }
+
+  for(var i=0; i<inputs.length; i++){
+    inputs[i].addEventListener('change',function(){
+      if(this.checked){
+        markAnswer(this.value);    
+      }
+    })
+  }
+
+hideAll();
+activateCurrent();
+
+
+  prevBtn.addEventListener('click',function(){
+    if(current > 0){
+        hideAll();
+        current--;
+        activateCurrent();
+    }
+
+  });
+
+  nextBtn.addEventListener('click',function(){
+    if(current < total - 1){
+        hideAll();
+        current++;
+        activateCurrent();
+    }
+
+  });
+
+
+  submit.addEventListener('click',function(e){
+
+    socket.emit('submit',UUID,EXAMID,details);
+
+  });
+
+  for(var i=0; i<total; i++){
+    btnSwitcher[i].addEventListener('click',function(e){
+
+      const cr = this.parentNode;
+      const arr = Array.prototype.slice.call(cr.parentNode.children);
+      var xx = arr.indexOf(cr);
+
+      hideAll();
+      current = xx;
+      activateCurrent();
+   
+
+    })
+  }
+
+  function hideAll(){
+      for(var i=0; i< total; i++){
+          qtile[i].style.display = "none";
+          if(details[i].answer == "" && details[i].visited == true)
+          btnSwitcher[i].style.background = "red";
+          else if(details[i].answer == "" && details[i].visited == false)
+          btnSwitcher[i].style.background = "rgb(22, 22, 22)";
+          else
+          btnSwitcher[i].style.background = "green";
+
+      }
+  }
+
+  function activateCurrent(){
+    qtile[current].style.display = "block";
+    btnSwitcher[current].style.background = "gray";
+    details[current].visited = true;
+  }
+
+
+  function getBrowserDetails(){
+
+    var nVer = navigator.appVersion;
+    var nAgt = navigator.userAgent;
+    var browserName  = navigator.appName;
+    var fullVersion  = ''+parseFloat(navigator.appVersion); 
+    var majorVersion = parseInt(navigator.appVersion,10);
+    var nameOffset,verOffset,ix;
+
+
+      // In Opera, the true version is after "Opera" or after "Version"
+      if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+      browserName = "Opera";
+      fullVersion = nAgt.substring(verOffset+6);
+      if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+        fullVersion = nAgt.substring(verOffset+8);
+      }
+      // In MSIE, the true version is after "MSIE" in userAgent
+      else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+      browserName = "Microsoft Internet Explorer";
+      fullVersion = nAgt.substring(verOffset+5);
+      }
+      // In Chrome, the true version is after "Chrome" 
+      else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+      browserName = "Chrome";
+      fullVersion = nAgt.substring(verOffset+7);
+      }
+      // In Safari, the true version is after "Safari" or after "Version" 
+      else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+      browserName = "Safari";
+      fullVersion = nAgt.substring(verOffset+7);
+      if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+        fullVersion = nAgt.substring(verOffset+8);
+      }
+      // In Firefox, the true version is after "Firefox" 
+      else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+      browserName = "Firefox";
+      fullVersion = nAgt.substring(verOffset+8);
+      }
+      // In most other browsers, "name/version" is at the end of userAgent 
+      else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < 
+                (verOffset=nAgt.lastIndexOf('/')) ) 
+      {
+      browserName = nAgt.substring(nameOffset,verOffset);
+      fullVersion = nAgt.substring(verOffset+1);
+      if (browserName.toLowerCase()==browserName.toUpperCase()) {
+        browserName = navigator.appName;
+      }
+      }
+      // trim the fullVersion string at semicolon/space if present
+      if ((ix=fullVersion.indexOf(";"))!=-1)
+        fullVersion=fullVersion.substring(0,ix);
+      if ((ix=fullVersion.indexOf(" "))!=-1)
+        fullVersion=fullVersion.substring(0,ix);
+
+      majorVersion = parseInt(''+fullVersion,10);
+      if (isNaN(majorVersion)) {
+      fullVersion  = ''+parseFloat(navigator.appVersion); 
+      majorVersion = parseInt(navigator.appVersion,10);
+      }
+
+
+      return {
+        browser_name:browserName.toLowerCase(),
+        full_version:fullVersion,
+        major_version:majorVersion,
+        navigator_appName:navigator.appName,
+        navigator_userAgent:navigator.userAgent
+      }
+
+  }
+
+  function init(){
+
+      const browserDetails = getBrowserDetails();
+
+      if(browserDetails.browser_name != 'chrome' &&
+      browserDetails.browser_name != 'firefox' &&
+      browserDetails.browser_name != 'edge' &&
+      browserDetails.browser_name != 'safari' ){
+
+        incompatibleBrowser();
+
+      }else{
+
+        if(browserDetails.browser_name == 'chrome' && browserDetails.major_version < 84 ||
+        browserDetails.browser_name == 'firefox' && browserDetails.major_version < 78 ||
+        browserDetails.browser_name == 'edge' && browserDetails.major_version < 83 ||
+        browserDetails.browser_name == 'safari' && browserDetails.major_version < 13){
+
+          incompatibleBrowser();
+
+        }else{
+
+          // Break browsers incompatiblity report
+
+          socket.emit('compatible');
+
+        }
+
+
+      }
+
+  }
+
+  function incompatibleBrowser(){
+
+    document.getElementById('incompatible').style.display = "block";
+
+  }
+
+  function markAnswer(val){
+
+    details[current]['answer'] = val;
+    socket.emit( "marked",details[current].id, UUID, EXAMID, val );
+
+  }
+
+
+  const startBtn=document.getElementById('start');
+
+  startBtn.addEventListener('click',function(){
+    socket.emit('startrequest',UUID, EXAMID )
+  })
+
+
+</script>
+
+</html>

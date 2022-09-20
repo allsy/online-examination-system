@@ -1,0 +1,158 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/dashboard.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+
+
+    <div id="mainContainer">
+
+        <!-- main container -->
+        <div id="top">
+
+            <!-- top or left container -->
+            <div id="tleft">
+
+                <div id="collegeView">
+
+                    <div class="view">
+                        <button id="activateEdit" class="myBtn"><%- include('svg/edit') %></button>
+                        <img src="<%= college.image %>" alt="logo" />
+                        <div id="cd">
+                            <div>
+                                <p class="cname"><%= college.name %></p>
+                            </div>
+                            <div class="regno">
+                                <p>Reg No</p>
+                                <p><%= college.uniqid %></p>
+                            </div>
+                            <div class="addholder">
+                                <p><%= addr.landmark %></p>
+                                <p><%= addr.state %></p>
+                                <p><%= addr.city %> - <%= addr.pin %></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="collegeEdit">
+
+                    <div class="editview">
+
+                        <button id="closeEdit" class="myBtn"><%- include('svg/cross') %></button>
+                        <div class="imageuholder">
+                            <img src="<%= college.image %>" alt="logo">
+                            <input type="file" name="logo" id="culogo">
+                            <label for="culogo">
+                                <%- include('svg/edit') %>
+                            </label>
+    
+                        </div>
+                        <div class="einputholder">
+                            <input type="text" name="name" value="<%= college.name %>">
+                            <input type="text" name="regno" value="<%= college.uniqid %>">
+                            <input type="text" name="landmark" value="<%= addr.landmark %>">
+                            <input type="text" name="state" value="<%= addr.state %>">
+                            <input type="text" name="city" value="<%= addr.city %>">
+                            <input type="text" name="pin" value="<%= addr.pin %>">
+                        </div>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div>
+                            <button id="update" class="myBtn">Update</button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- right or bottom container -->
+            <div id="tright">
+
+                <div id="createExamBtnCnt">
+                    <button id="createExamBtn" class="myBtn">Create Exam</button>
+                </div>
+
+                <p class="subheading">All Exams</p>
+                <div>
+
+                    <!-- exam tile -->
+                    <!-- <% if(exams){ %>
+
+                        <% for(var i=0; i<exams.length; i++) { %>
+                            <div class="examtile">
+                                <img src="" alt="" class="examlogo">
+                                <div class="examdetails">
+                                    <p class="examname">Logica</p>
+                                    <p class="startat">Starting on <%= new Date().toLocaleString() %></p>
+                                    <p class="duration">Duration 20 minutes</p>
+                                    <p class="linktitle">Registration Link</p>
+                                    <a href="" class="link">https://logica.allkods.in/25478/register</a>
+                                    <p class="linktitle">Exam Link</p>
+                                    <a href="" class="link">https://logica.allkods.in/25478/login</a>
+                                    <div class="examed">
+                                        <button class="myBtn"><%- include('svg/edit') %></button>
+                                        <button class="myBtn"><%- include('svg/cross') %></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <% } %>
+
+                    <% } %> -->
+                    <div class="examtile">
+                        <img src="/images/exams/025461.jpg" alt="" class="examlogo">
+                        <div class="examdetails">
+                            <p class="examname">Logica</p>
+                            <p class="startat">Starting on <%= new Date().toLocaleString() %></p>
+                            <p class="duration">Duration 20 minutes</p>
+                            <p class="linktitle">Registration Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/register</a>
+                            <p class="linktitle">Exam Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/login</a>
+                            <div class="examed">
+                                <button class="myBtn"><%- include('svg/edit') %></button>
+                                <button class="myBtn"><%- include('svg/cross') %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ................ -->
+
+                    <!-- exam tile -->
+                    <div class="examtile">
+                        <img src="/images/exams/025461.jpg" alt="" class="examlogo">
+                        <div class="examdetails">
+                            <p class="examname">Logica</p>
+                            <p class="startat">Starting on <%= new Date().toLocaleString() %></p>
+                            <p class="duration">Duration 20 minutes</p>
+                            <p class="linktitle">Registration Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/register</a>
+                            <p class="linktitle">Exam Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/login</a>
+                            <div class="examed">
+                                <button class="myBtn"><%- include('svg/edit') %></button>
+                                <button class="myBtn"><%- include('svg/cross') %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ................ -->
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <%- include('inc/footer') %>
+    
+    <script src="/js/default.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

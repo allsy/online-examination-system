@@ -1,0 +1,253 @@
+#top{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+#tleft{
+    width: 100%;
+    height: auto;
+    display: flex;
+    box-shadow: 0 0 10px gray;
+}
+.view{
+    display: block;
+    position: relative;
+}
+#collegeEdit{
+    display: none;
+}
+#activateEdit,#closeEdit{
+    height: 40px;
+    width: 40px;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    background-color: rgb(0, 43, 128);
+    display: flex;
+    box-shadow: 0 0 10px -3px gray;
+}
+
+#activateEdit>svg,#closeEdit>svg{
+    height: 18px;
+    width: 18px;
+    fill: whitesmoke;
+    margin: auto;
+}
+.view>img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin:15px;
+}
+#cd{
+    flex: 1;
+    margin: 15px;
+}
+#cd>div{
+    margin: 0 0 20px 0;
+}
+.regno>p{
+    display: inline-block;
+}
+.addholder>p{
+    display: block;
+    margin: 5px 0;
+}
+.cname{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.editview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.editview>div{
+    margin: 0 0 50px 0;
+    padding: 15px;
+}
+.imageuholder{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    margin:15px;
+    position: relative;
+    overflow: hidden;
+}
+.imageuholder>*{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.imageuholder>img{
+    border-radius: 50%;
+}
+.imageuholder>input{
+    visibility: hidden;
+}
+.imageuholder>label{
+    height: 30%;
+    width: 100%;
+    background-color: black;
+    bottom: 0;
+    top: unset;
+    display: flex;
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+.imageuholder>label:hover{
+    height: 60%;
+}
+.imageuholder>label>svg{
+    fill: whitesmoke;
+    height: 15px;
+    width: 15px;
+    margin: auto;
+}
+.einputholder{
+    width: 60%;
+}
+.einputholder>input{
+    width: 100%;
+    margin: 10px 0;
+    height: 40px;
+    padding: 0 5px;
+}
+#update{
+    padding: 15px 10px;
+}
+
+
+#tright{
+    height: auto;
+    width: 100%;
+    background-color: aliceblue;
+    position: relative;
+}
+#createExamBtnCnt{
+    width: 100%;
+    height: 80px;
+    position: relative;
+}
+#createExamBtn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 5px 15px;
+    background-color: rgb(0, 43, 128);
+    border: none;
+    color: whitesmoke;
+    box-shadow: 0 0 10px -3px gray;
+    cursor: pointer;
+}
+
+.myBtn{
+    transition: all 300ms ease-in-out;
+}
+.myBtn:hover{
+    transform: scale(1.1);
+    filter: grayscale(1);
+}
+.subheading{
+    font-size: 22px;
+    margin: 5px 20px;
+}
+.examtile{
+    display: flex;
+    max-width: 400px;
+    height: auto;
+    padding: 15px 10px;
+    margin: 15px auto;
+    align-items: center;
+    position: relative;
+    background-color: white;
+}
+.examlogo{
+    height: 80px;
+    width: 80px;
+    margin: 0 50px 0 0;
+    border-radius: 10%;
+}
+.examdetails{
+    flex:1;
+}
+
+.examname{
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0 5px 20px 5px;
+}
+.startat,.duration{
+    margin: 5px;
+    color: rgb(57, 57, 57);
+}
+.linktitle{
+    color: rgb(57, 57, 57);
+    margin: 15px 5px 0 5px;
+}
+.link{
+    margin: 5px;
+    font-size: 15px;
+}
+.examed{
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin: 20px 0;
+    justify-content: flex-end;
+}
+.examed>button{
+    width: 60px;
+    height: 40px;
+    margin: 0 5px;
+    background-color: orangered;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+}
+.examed>button>svg{
+    height: 15px;
+    width: 15px;
+    fill: whitesmoke;
+    margin: auto;
+}
+
+@media screen and (min-width:800px){
+    #top{
+        flex-direction: row;
+    }
+    #tleft{
+        flex-direction: column;
+        width: 350px;
+        min-height: 100vh;
+        padding: 50px 30px 0 10px;
+        box-shadow: none;
+        align-items: flex-start;
+    }
+    #tright{
+        flex: 1;
+    }
+    #tleft>img{
+        margin: 20px;
+    }
+    #cd{
+        width: 100%;
+    }
+    .examtile{
+        margin: 25px 30px;
+        display: inline-block;
+    }
+    .examname{
+        margin: 10px 5px 20px 5px;
+    }
+}

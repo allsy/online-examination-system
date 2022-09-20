@@ -1,0 +1,55 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+   
+    <div id="main">
+        <div id="left">
+            <form action="/register" method="post">
+                <p class="subtitle">Register as College user</p>
+                <input type="email" name="email" placeholder="Email">
+                <% if(error !=''){ if(error=='emailerr'){ %>
+                    <p class="err">invalid email !</p>
+                    <% } else if(error=='exist'){ %>
+                        <p class="err">User with this email already exists</p>
+                    <% } else{ %>
+                    <p class="err"></p> 
+                    <% }}else{ %>
+                    <p class="err"></p> 
+                    <% } %>
+                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="cpassword" placeholder="Confirm Password">
+                <% if(error !=''){ if(error=='passerr'){ %>
+                    <p class="err">invalid password !</p>
+                    <% }else if(error=='Missing credentials'){ %>
+                    <p class="err">One or more field is empty</p>
+                    <% }else if(error=='matcherr'){ %>
+                        <p class="err">Password did not match! try again</p>
+                   <% }else{ %>
+                    <p class="err"></p>
+                  <% }}else{ %>
+                    <p class="err"></p>
+                    <% } %>
+                <input type="hidden" name="rdr" value="<%= rdr %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button><%- include('svg/edit')%> Register</button>
+                <a href="/" class="link">Already Registered? Login</a>
+            </form>
+
+        </div>
+        <div id="right">
+
+            <%- include('svg/loginbk') %>
+            
+        </div>
+    </div>
+   
+
+    <%- include('inc/footer') %>
+
+    <script src="/js/default.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+#main{
+    height: auto;
+    width: 80%;
+    padding:100px 0 0 0;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+#mainSlider{
+    width: 200%;
+    height: 100%;
+    transition: all 300ms ease-in-out;
+    display: flex;
+}
+#mainSlider>div{
+    flex: 1;
+    height: 100%;
+    padding: 5px;
+}
+
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 50px 0;
+}
+.heading>p{
+    font-size: 30px;
+}
+.heading>button{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.heading>button>svg{
+    height: 50%;
+    width: 50%;
+}
+
+#mainView>div{
+    margin: 10px 0;
+    border-bottom: 2px solid rgb(213, 213, 213);
+}
+.subtitle{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    color: rgb(44, 44, 209);
+}
+.values{
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+.imgCnt{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px -4px black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.imgCnt>img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#mainView>div:nth-child(1){
+    margin: 0 0 50px 0;
+}
+
+
+
+
+.imgCnt>*{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.imgCnt>img{
+    border-radius: 50%;
+}
+.imgCnt>input{
+    visibility: hidden;
+}
+.imgCnt>label{
+    height: 30%;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+    bottom: 0;
+    top: unset;
+    display: flex;
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+.imgCnt>label:hover{
+    height: 60%;
+}
+.imgCnt>label>svg{
+    fill: whitesmoke;
+    height: 15px;
+    width: 15px;
+    margin: auto;
+}
+
+#mainEdit>form>div>input[type='text']{
+    height: 35px;
+    padding: 0 10px;
+}
+
+#update{
+    width: 80px;
+    height: 35px;
+    margin: 40px 0 0 0;
+    background-color: #093388;
+    color: whitesmoke;
+    border: none;
+    cursor: pointer;
+}

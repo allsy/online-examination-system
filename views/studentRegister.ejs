@@ -1,0 +1,83 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+   
+    <div id="main">
+        <div id="left">
+            <form action="/exam/<%= exam.uniqid %>/register" method="post">
+
+                <% if(success_msg !=''){ %>
+                    <p class="success"><%= success_msg %></p>
+                <% } %>
+                <div id="ftop">
+                    <img src="<%= exam.image %>" alt="">
+                    <p class="ename"><%= exam.name %></p>
+                    <p class="estart">Exam on : <%= new Date(exam.starting).toLocaleString() %></p>
+                    <p class="eend">Registration till: <%= new Date(exam.regend).toLocaleString() %> </p>
+                </div>
+                <input type="text" name="name" placeholder="Name">
+                <input type="email" name="email" placeholder="Email">
+                <% if(error !=''){ if(error=='emailerr'){ %>
+                    <p class="err">invalid email !</p>
+                    <% } else if(error=='exist'){ %>
+                        <p class="err">User with this email already exists</p>
+                    <% } else{ %>
+                    <p class="err"></p> 
+                    <% }}else{ %>
+                    <p class="err"></p> 
+                    <% } %>
+                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="cpassword" placeholder="Confirm Password">
+                <% if(error !=''){ if(error=='passerr'){ %>
+                    <p class="err">invalid password !</p>
+                    <% }else if(error=='Missing credentials'){ %>
+                    <p class="err">One or more field is empty</p>
+                    <% }else if(error=='matcherr'){ %>
+                        <p class="err">Password did not match! try again</p>
+                   <% }else{ %>
+                    <p class="err"></p>
+                  <% }}else{ %>
+                    <p class="err"></p>
+                    <% } %>
+                <input type="hidden" name="rdr" value="<%= rdr %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button><%- include('svg/edit')%> Register</button>
+
+                <% if(!visible){%>
+
+                    <div id="notallowed">
+                        <%- include('svg/unlock') %>
+                        <p>Registration Closed</p>
+                    </div>
+
+                <% } %>
+            </form>
+
+        </div>
+        <div id="right">
+
+            <div id="rtop">
+                <div id="logondname">
+                    <img src="<%= exam.image %>" alt="logo">
+                    <p><%= exam.name %></p>
+                </div>
+
+                <div id="xtradet">
+                    <p id="starting">Exam on : <%= new Date(exam.starting).toLocaleString() %></p>
+                    <p id="ending">Registration till: <%= new Date(exam.regend).toLocaleString() %> </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+   
+
+    <%- include('inc/footer') %>
+
+    <script src="/js/default.js"></script>
+</body>
+
+</html>

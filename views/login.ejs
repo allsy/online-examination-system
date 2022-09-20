@@ -1,0 +1,53 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+   
+    <div id="main">
+        <div id="left">
+            <form action="/" method="post">
+                <p class="subtitle">Login as College user</p>
+
+                <input type="text" name="email" placeholder="Username">
+                <% if(error !=''){ if(error=='emailerr'){ %>
+                    <p class="err">invalid username !</p>
+                    <% } else if(error=='gmailerr'){ %>
+                        <p class="err">Previously logged in using gmail !</p>
+                    <% } else{ %>
+                    <p class="err"></p> 
+                    <% }}else{ %>
+                    <p class="err"></p> 
+                    <% } %>
+                <input type="password" name="password" placeholder="Password">
+                <% if(error !=''){ if(error=='passerr'){ %>
+                    <p class="err">invalid password !</p>
+                    <% }else if(error=='Missing credentials'){ %>
+                    <p class="err">One or more field is empty</p>
+                   <% }else{ %>
+                    <p class="err"></p>
+                  <% }}else{ %>
+                    <p class="err"></p>
+                    <% } %>
+                <input type="hidden" name="rdr" value="<%= rdr %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button><%- include('svg/unlock')%> Login</button>
+                <a href="/register" class="link">Register college here !</a>
+            </form>
+
+        </div>
+        <div id="right">
+
+            <%- include('svg/loginbk') %>
+            
+        </div>
+    </div>
+   
+
+    <%- include('inc/footer') %>
+
+    <script src="/js/default.js"></script>
+</body>
+
+</html>

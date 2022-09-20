@@ -1,0 +1,146 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/exam.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+    <div id="subheader">
+        <div>
+
+            <div id="shtop">
+                <button id="createExam" class="mybtn"><%- include('svg/plus') %>Create Exam</button>
+
+            </div>
+            <div id="shbot">
+                <div id="searchCnt">
+                    <input type="text" name="search" placeholder="Search..." />
+                    <button><%- include('svg/search') %></button>
+                </div>
+
+                <!-- <div id="submenuCnt">
+                    <button>Upcoming Exams</button>
+                    <button>Exams Held</button>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+
+        <% if(exam && exam.length > 0){ %>
+
+            <% for(var i=0; i<exam.length; i++){ %>
+
+
+                <div class="examtile" id="<%= exam[i].uniqid %>">
+
+                    <input type="hidden" class="image" value="<%= exam[i].image %>" />
+                    <input type="hidden" class="name" value="<%= exam[i].name %>" />
+                    <input type="hidden" class="starting" value="<%= exam[i].starting %>" />
+                    <input type="hidden" class="regend" value="<%= exam[i].regend %>" />
+                    <input type="hidden" class="uniqid" value="<%= exam[i].uniqid %>" />
+                    <input type="hidden" class="duration" value="<%= exam[i].duration %>" />
+
+
+                    <img src="<%= exam[i].image %>" alt="" class="examlogo">
+                    <div class="examdetails">
+                        <p class="examname"><%= exam[i].name %></p>
+                        <p class="startat">Starting on <%= new Date(exam[i].starting).toLocaleString() %></p>
+                        <p class="duration">Duration <%= exam[i].duration %> minutes</p>
+                        <p class="regend">Registration ending <%= new Date(exam[i].regend).toLocaleString() %></p>
+                        <p class="linktitle">Registration Link</p>
+                        <a href="http://127.0.0.1:8000/exam/<%= exam[i].uniqid %>/register" class="link">http://127.0.0.1:8000/exam/<%= exam[i].uniqid %>/register</a>
+                        <p class="linktitle">Exam Link</p>
+                        <a href="http://127.0.0.1:8000/exam/<%= exam[i].uniqid %>/login" class="link">http://127.0.0.1:8000/exam/<%= exam[i].uniqid %>/login</a>
+                        <div class="examed">
+                            <button class="myBtn examEdit"><%- include('svg/edit') %></button>
+                            <button class="myBtn examDelete"><%- include('svg/cross') %></button>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+
+        <% }else{ %>
+
+        <div id="noitem">
+            <img src="/images/test.png" />
+            <p>You have not created any exam yet !</p>
+            <button id="createnew" class="mybtn">Create Now</button>
+        </div>
+
+        <% } %>
+       
+    </div>
+   
+
+    <%- include('inc/footer') %>
+
+
+    <div id="newExam">
+
+        <div id="neoverflow">
+
+            <button id="cancelcreation"><%- include('svg/cross') %></button>
+
+            <div id="neCnt">
+            
+                <p class="label">Add Logo</p>
+                <div class="imgCnt">
+                    <img src="/images/question.jpeg" alt="logo" id="logoPreview">
+                    <input type="file" name="logo" id="culogo">
+                    <label for="culogo">
+                        <%- include('svg/edit') %>
+                    </label>
+                </div>
+    
+                <div class="inpCnt">
+                    <p class="label">Exam Name</p>
+                    <input type="text" id="examname" name="examname" class="textbox">
+                </div>
+    
+                <div class="inpCnt">
+                    <p class="label">Exam Start DateTime</p>
+                    <input type="date" id="examdate" class="textbox">
+                    <input type="time" id="examtime" class="textbox" value="00:00:00">
+                    <p class="note">Use arrow key to alter time and switch hour-minute-second</p>
+                </div>
+    
+                <div class="inpCnt">
+                    <p class="label">Exam Duration</p>
+                    <input type="number" id="examduration" class="textbox">
+                    <p class="note">In minutes</p>
+                </div>
+    
+
+                <div class="inpCnt">
+                    <p class="label">Registration End DateTime</p>
+                    <input type="date" id="regenddate" class="textbox">
+                    <input type="time" id="regendtime" class="textbox" value="00:00:00">
+                    <p class="note">Registration will automatically start when the exam is created</p>
+                </div>
+
+                <div class="inpCnt">
+                    <p class="label">Excel file containing questions</p>
+                    <input type="file" id="examquestions" class="textbox">
+                    <p class="note">To see the demo on how to prepare excel file.</p>
+                    <a href="">click here</a>
+                </div>
+
+                <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>" />
+                <input type="hidden" name="e_id" id="e_id" value="" />
+                <div class="inpCnt">
+                    <button class="mybtn" id="create">Create</button>
+                </div>
+    
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/default.js"></script>
+    <script src="/js/exam.js"></script>
+</body>
+
+</html>

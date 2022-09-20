@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/default.css" />
+    <link rel="stylesheet" href="/styles/home.css" />
+</head>
+<body>
+
+    <header></header>
+
+
+    <div id="mainContainer">
+
+        <!-- main container -->
+        <div id="top">
+
+            <!-- top or left container -->
+            <div id="tleft">
+
+                <img src="<%= college.image %>" />
+                <div id="cd">
+                    <div>
+                        <p class="cname"><%= college.name %></p>
+                    </div>
+                    <div>
+                        <p>Reg No</p>
+                        <p><%= college.uniqid%></p>
+                    </div>
+                    <div>
+                        <p><%= addr.landmark %>,<%= addr.state %>,<%= addr.city %>-<%= addr.pin %></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- right or bottom container -->
+            <div id="tright">
+
+                <div id="createExamBtnCnt">
+                    <button id="createExamBtn">Create Exam</button>
+                </div>
+
+                <p class="subheading">All Exams</p>
+                <div>
+
+                    <% exams.forEach(elem => { %>
+
+                         <!-- exam tile -->
+                    <div class="examtile">
+                        <img src="<%= elem.image %>" alt="" class="examlogo">
+                        <div class="examdetails">
+                            <p class="examname"><%= elem.name %></p>
+                            <p class="startat">Starting on <%= new Date(elem.starting).toLocaleString() %></p>
+                            <p class="duration">Duration <%= elem.duration %> minutes</p>
+                            <p class="linktitle">Registration Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/register</a>
+                            <p class="linktitle">Exam Link</p>
+                            <a href="" class="link">https://logica.allkods.in/25478/login</a>
+                            <div class="examed">
+                                <button>E</button>
+                                <button>D</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ................ -->
+                        
+                    <% }) %>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer></footer>
+    
+</body>
+</html>

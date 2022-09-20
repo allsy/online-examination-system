@@ -1,0 +1,75 @@
+<%- include('inc/head') %>
+    <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body>
+
+    <%- include('inc/header') %>
+   
+    <div id="main">
+        <div id="left">
+            <form action="/exam/<%= exam.uniqid %>/login" method="post">
+
+                <div id="ftop">
+                    <img src="<%= exam.image %>" alt="">
+                    <p class="ename"><%= exam.name %></p>
+                    <p class="estart">Exam on : <%= new Date(exam.starting).toLocaleString() %></p>
+                    <p class="eend">Registration till: <%= new Date(exam.regend).toLocaleString() %> </p>
+                </div>
+
+                <% if(visible) { %>
+                <input type="text" name="email" placeholder="Username">
+                <% if(error !=''){ if(error=='emailerr'){ %>
+                    <p class="err">invalid username !</p>
+                    <% } else if(error=='gmailerr'){ %>
+                        <p class="err">Previously logged in using gmail !</p>
+                    <% } else{ %>
+                    <p class="err"></p> 
+                    <% }}else{ %>
+                    <p class="err"></p> 
+                    <% } %>
+                <input type="password" name="password" placeholder="Password">
+                <% if(error !=''){ if(error=='passerr'){ %>
+                    <p class="err">invalid password !</p>
+                    <% }else if(error=='Missing credentials'){ %>
+                    <p class="err">One or more field is empty</p>
+                   <% }else{ %>
+                    <p class="err"></p>
+                  <% }}else{ %>
+                    <p class="err"></p>
+                    <% } %>
+                <input type="hidden" name="rdr" value="<%= rdr %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button><%- include('svg/unlock')%> Login</button>
+            <%}else{%>
+                <div id="lnotallowed">
+                    <%- include('svg/unlock') %>
+                    <p>Login Portal will be unlocked 10 minutes before the exam starting time.</p>
+                </div>
+            <% } %>
+            </form>
+
+        </div>
+        <div id="right">
+
+            <div id="rtop">
+                <div id="logondname">
+                    <img src="<%= exam.image %>" alt="logo">
+                    <p><%= exam.name %></p>
+                </div>
+
+                <div id="xtradet">
+                    <p id="starting">Exam on : <%= new Date(exam.starting).toLocaleString() %></p>
+                    <p id="ending">Registration till: <%= new Date(exam.regend).toLocaleString() %> </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+   
+
+    <%- include('inc/footer') %>
+
+    <script src="/js/default.js"></script>
+</body>
+
+</html>

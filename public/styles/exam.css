@@ -1,0 +1,345 @@
+#subheader{
+    width: 100%;
+    height: auto;
+    padding: 80px 0 0 0;
+}
+#subheader>div{
+    height: auto;
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+#shtop{
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+}
+#createExam{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    justify-content: space-evenly;
+    margin: 30px 0;
+}
+#createExam>svg{
+    height: 10px;
+    width: 10px;
+    fill: whitesmoke;
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+    padding: 5px;
+}
+#createExam>*{
+    margin: 0 5px;
+}
+#shbot{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#searchCnt{
+    width: 70%;
+    max-width: 500px;
+    margin: auto;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #093388;
+}
+#searchCnt>input{
+    flex: 1;
+    height: 100%;
+    text-indent: 10px;
+    border: none;
+}
+#searchCnt>button{
+    height: 35px;
+    width: 35px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #093388;
+}
+#searchCnt>button>svg{
+    height: 50%;
+    width: 50%;
+    fill: whitesmoke;
+}
+
+#main{
+    width: 90%;
+    margin: 20px auto 0 auto;
+    max-width: 1000px;
+    min-height: 80vh;
+}
+
+#submenuCnt{
+    display: flex;
+    width: 70%;
+    height: 40px;
+    max-width: 500px;
+    margin: auto;
+    background-color: green;
+    margin: 15px 0;
+}
+#submenuCnt>button{
+    height: 100%;
+    flex:1;
+    border: none;
+}
+
+#noitem{
+    margin: 100px auto;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#noitem>img{
+    width: 150px;
+    height: 150px;
+}
+#noitem>p{
+    margin: 10px 0;
+}
+#createnew{
+    margin: 30px 0 0 0;
+}
+.mybtn{
+    padding: 10px 20px;
+    background-image: linear-gradient(to right, #1928cb,#9819cb);
+    color: whitesmoke;
+    border: none;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+.mybtn:hover{
+    box-shadow: 5px 5px 10px -4px #9819cb;
+}
+
+
+
+/****************************************/
+
+#newExam{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 11;
+    background-color: rgba(0,0,0,.3);
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+}
+#neoverflow{
+    overflow-y: scroll;
+    height: 80%;
+    max-width: 500px;
+    background-color: white;
+    position: relative;
+}
+#neCnt{
+    width: 80%;
+    height: auto;
+    background-color: white;
+    max-width: 500px;
+    padding: 30px;
+}
+#cancelcreation{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #f20c0c;
+    border: none;
+    transition: all 300ms ease-in-out;
+}
+#cancelcreation:hover{
+    transform: scale(1.1);
+}
+#cancelcreation>svg{
+    height: 50%;
+    width: 50%;
+    fill: whitesmoke;
+}
+.label{
+    font-weight: bold;
+    font-size: 17px;
+    margin: 10px 0;
+}
+.textbox{
+    padding: 7px;
+    background-color: none;
+    text-indent: 10px;
+    border: 1px solid rgb(131, 131, 131);
+    max-width: 260px;
+    color: rgb(62, 62, 62);
+}
+.inpCnt{
+    margin: 25px 0;
+}
+.note{
+    color: #f20c0c;
+    margin: 7px 0 0 0;
+    font-size: 15px;
+}
+.inpCnt>a{
+    display: block;font-size: 16px;
+}
+
+.imgCnt{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px -4px black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 0 50px 0;
+}
+.imgCnt>*{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.imgCnt>img{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.imgCnt>input{
+    visibility: hidden;
+}
+.imgCnt>label{
+    height: 30%;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+    bottom: 0;
+    top: unset;
+    display: flex;
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+.imgCnt>label:hover{
+    height: 60%;
+}
+.imgCnt>label>svg{
+    fill: whitesmoke;
+    height: 15px;
+    width: 15px;
+    margin: auto;
+}
+
+
+.myBtn{
+    transition: all 300ms ease-in-out;
+}
+.myBtn:hover{
+    transform: scale(1.1);
+    filter: grayscale(1);
+}
+
+.examtile{
+    display: flex;
+    max-width: 440px;
+    height: auto;
+    padding: 15px 10px;
+    margin: 15px auto;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgb(226, 247, 255),white);
+}
+.examlogo{
+    height: 80px;
+    width: 80px;
+    margin: 0 50px 0 0;
+    border-radius: 10%;
+}
+.examdetails{
+    flex:1;
+}
+
+.examname{
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0 5px 20px 5px;
+}
+.startat,.duration,.regend{
+    margin: 5px;
+    color: rgb(57, 57, 57);
+}
+.linktitle{
+    color: rgb(57, 57, 57);
+    margin: 15px 5px 0 5px;
+}
+.link{
+    margin: 5px;
+    font-size: 15px;
+}
+.examed{
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin: 20px 0;
+    justify-content: flex-end;
+}
+.examed>button{
+    width: 60px;
+    height: 40px;
+    margin: 0 5px;
+    background-color: orangered;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+}
+.examed>button>svg{
+    height: 15px;
+    width: 15px;
+    fill: whitesmoke;
+    margin: auto;
+}
+
+
+
+@media screen and (min-width:800px){
+    #noitem>img{
+        width: 200px;
+        height: 200px;
+    }
+
+
+    .examtile{
+        margin: 25px 30px;
+        display: inline-block;
+        max-width: 360px;
+    }
+    .examname{
+        margin: 10px 5px 20px 5px;
+    }
+}
+

@@ -1,0 +1,33 @@
+<header id="header">
+
+    <div id="logoCnt">
+        <P>ONLINE</P>
+        <p>|</p> 
+        <p>EXAM</p>
+        <p>|</p>
+        <p>SYSTEM</p>
+    </div>
+
+    <% if(user) { %>
+    <div id="loggedinCnt">
+        <div id="lcTop">
+            <div id="lcTopPic" style="
+            background:url('<%= college.image %>');
+            background-size:cover;
+            background-position:center;
+            "></div>
+            <div id="lcTopArrow"><%- include('../svg/arrow') %></div>
+        </div>
+
+        <div id="menu">
+            <div id="menuArrow"></div>
+            <div id="menuListCnt">
+                <a href="/profile"><li><%- include('../svg/edit')%> College Profile</li></a>
+                <a href="/exams"><li><%- include('../svg/edit')%> Exams</li></a>
+                <a href="/logout"><li><%- include('../svg/logout')%> Logout</li></a>
+            </div>
+
+        </div>
+    </div>
+    <% } %>
+</header>
